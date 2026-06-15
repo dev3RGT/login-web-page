@@ -1,142 +1,31 @@
-/* Reset & Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* --- Added for Google Auth Separator & Button --- */
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: #a0aec0;
+    font-size: 14px;
 }
 
-body {
-    background: linear-gradient(135deg, #e0eafc, #cfdef3);
-    height: 100vh;
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.separator:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: .5em;
+}
+
+#googleBtnContainer {
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-/* Login Card Container */
-.login-container {
-    width: 100%;
-    max-width: 420px;
-    padding: 20px;
-}
-
-.login-card {
-    background: #ffffff;
-    padding: 40px 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(162, 179, 207, 0.35);
-    text-align: center;
-}
-
-/* Blending Text Colors & Gradients */
-.login-card h2 {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    background: linear-gradient(45deg, #1e3c72, #2a5298);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.subtitle {
-    color: #718096; /* Blended muted blue-gray */
-    font-size: 14px;
-    margin-bottom: 32px;
-}
-
-/* Input Fields */
-.input-group {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    font-size: 14px;
-    color: #4a5568; /* Soft slate blue-gray */
-    margin-bottom: 6px;
-    font-weight: 500;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 15px;
-    color: #2d3748;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.input-group input:focus {
-    border-color: #3182ce; /* Bright brand blue */
-    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
-}
-
-/* Options (Remember me & Forgot password) */
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    margin-bottom: 24px;
-}
-
-.remember-me {
-    color: #718096;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.forgot-pass {
-    color: #3182ce;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.forgot-pass:hover {
-    text-decoration: underline;
-}
-
-/* Submit Button */
-.btn-submit {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, #3182ce, #2b6cb0);
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.1s ease, box-shadow 0.3s ease;
-}
-
-.btn-submit:hover {
-    box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
-}
-
-.btn-submit:active {
-    transform: scale(0.98);
-}
-
-/* Footer Signup Text */
-.signup-text {
-    font-size: 14px;
-    color: #718096;
-    margin-top: 32px;
-}
-
-.signup-text a {
-    color: #2b6cb0;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.signup-text a:hover {
-    text-decoration: underline;
+    margin-bottom: 10px;
 }
