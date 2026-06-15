@@ -3,11 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login Page</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Modern Login Portal</title>
+    
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Login Card Container */
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            padding: 45px 35px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(162, 179, 207, 0.25);
+            text-align: center;
+        }
+
+        /* Typography with soft blending text-gradients */
+        .login-card h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        /* Modern Input Form Styling */
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            color: #4a5568;
+            margin-bottom: 8px;
+            font-weight: 500;
+            padding-left: 12px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px; /* Modern pill layout */
+            font-size: 15px;
+            color: #2d3748;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #3182ce;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+        }
+
+        /* Options Layer */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            margin-bottom: 24px;
+            padding: 0 8px;
+        }
+
+        .remember-me {
+            color: #718096;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .forgot-pass {
+            color: #3182ce;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-pass:hover {
+            text-decoration: underline;
+        }
+
+        /* Native Submit Action Button */
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px; /* Pill profile alignment */
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            box-shadow: 0 5px 15px rgba(49, 130, 206, 0.4);
+            opacity: 0.95;
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        /* Clean Content Separator */
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 24px 0;
+            color: #a0aec0;
+            font-size: 13px;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .separator:not(:empty)::before { margin-right: .8em; }
+        .separator:not(:empty)::after { margin-left: .8em; }
+
+        /* Auth Container alignment */
+        #googleBtnContainer {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* Footer Switching Layout */
+        .signup-text {
+            font-size: 14px;
+            color: #718096;
+            margin-top: 32px;
+        }
+
+        .signup-text a {
+            color: #2b6cb0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+
     <div class="login-container">
         <div class="login-card">
             <h2>Welcome Back</h2>
@@ -44,6 +220,47 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Form intercept logic for standard validation handling
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email && password) {
+                console.log("Standard credentials collected:", email);
+                alert("Standard validation passed!");
+                // Connect endpoint routing here
+            }
+        });
+
+        // Google Authentication Logic Flow
+        function handleCredentialResponse(response) {
+            // response.credential provides the OAuth 2.0 JWT secure token string payload
+            console.log("Encoded JWT ID token verified:", response.credential);
+            alert("Google authentication context mapped successfully!");
+        }
+
+        window.onload = function () {
+            // Component initial structural parameters load
+            google.accounts.id.initialize({
+                // Replace string placeholder below with runtime Google Cloud Client Token
+                client_id: "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com", 
+                callback: handleCredentialResponse
+            });
+
+            // Structural injection settings for native layout compliance
+            google.accounts.id.renderButton(
+                document.getElementById("googleBtnContainer"),
+                { 
+                    theme: "outline", 
+                    size: "large", 
+                    width: "350", 
+                    text: "signin_with",
+                    shape: "pill" // Keeps styling consistent with input fields
+                } 
+            );
+        };
+    </script>
 </body>
 </html>
